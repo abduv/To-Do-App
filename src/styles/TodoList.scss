@@ -1,0 +1,45 @@
+.todoList {
+    list-style: none;
+
+    &__item {
+        border-bottom: 1px solid #bfbebe;
+        padding: .5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__completed {
+        cursor: pointer;
+        margin-right: .5rem;
+    }
+
+    &__title {
+        flex: 1;
+    }
+
+    &__button {
+        background-color: transparent;
+        border-radius: 5px;
+        outline: none;
+        padding: .3rem;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    &__button + &__button {
+        margin-left: .5rem;
+    }
+
+    &__editButton {
+        color: #09d509;
+        border: 1px solid #09d509;
+    }
+
+    &__removeButton {
+        color: #ff0000;
+        border: 1px solid #ff0000;
+    }
+}

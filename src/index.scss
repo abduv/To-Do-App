@@ -3,6 +3,7 @@
 @import "styles/Header";
 @import "styles/Card";
 @import "styles/AddTodo";
+@import "styles/TodoList";
 
 
 body {
@@ -23,4 +24,5 @@ code {
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
