@@ -2,11 +2,7 @@
     list-style: none;
 
     &__item {
-        border-bottom: 1px solid #bfbebe;
-        padding: .5rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        @include listItem;
     }
 
     &__completed {
@@ -19,14 +15,7 @@
     }
 
     &__button {
-        background-color: transparent;
-        border-radius: 5px;
-        outline: none;
-        padding: .3rem;
-
-        &:hover {
-            cursor: pointer;
-        }
+        @include button;
     }
 
     &__button + &__button {

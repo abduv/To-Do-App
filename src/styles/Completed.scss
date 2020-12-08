@@ -1,0 +1,22 @@
+.completed__list {
+    list-style: none;
+
+    .completed__item {
+        @include listItem;
+    }
+
+    .completed__title {
+        flex: 1;
+        color: #b3b2b2;
+    }
+
+    .completed__button {
+        color: #ff0000;
+        border: 1px solid #ff0000;
+        @include button;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}

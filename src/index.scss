@@ -1,9 +1,11 @@
 @import "styles/variables";
+@import "styles/mixins";
 @import "App";
 @import "styles/Header";
 @import "styles/Card";
 @import "styles/AddTodo";
 @import "styles/TodoList";
+@import "styles/Completed";
 
 
 body {
