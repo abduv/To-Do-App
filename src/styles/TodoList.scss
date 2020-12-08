@@ -16,9 +16,6 @@
 
     &__button {
         @include button;
-    }
-
-    &__button + &__button {
         margin-left: .5rem;
     }
 
@@ -30,5 +27,14 @@
     &__removeButton {
         color: #ff0000;
         border: 1px solid #ff0000;
+    }
+
+    &__input {
+        flex: 1;
+        outline: none;
+    }
+
+    &__noTodo {
+        padding: .5rem 0 0;
     }
 }

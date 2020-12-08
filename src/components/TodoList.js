@@ -1,45 +1,22 @@
-import React from 'react';
+import React, { useContext} from 'react';
 import { Card } from './Card';
+import { Store } from '../context/Store';
+import { TodoItem } from './TodoItem';
 
 export const TodoList = () => {
-    const todo = [
-        {
-            title: 'buy milk',
-            completed: false,
-            id: 1
-        },
-        {
-            title: 'buy milk',
-            completed: false,
-            id: 2
-        },
-        {
-            title: 'buy milk',
-            completed: false,
-            id: 3
-        },
-        {
-            title: 'buy milk',
-            completed: false,
-            id: 4
-        }
-    ]
+    const { state: { todos } } = useContext(Store)
 
     return (
         <>
             <Card title="To-Do List">
                 <ul className="todoList">
-                    { todo.map(el => (
-                        <li className="todoList__item">
-                            <input className="todoList__completed" id="completed" type="checkbox"/>
-                            <label className="todoList__title" htmlFor="completed">{ el.title }</label>
-                            <button className="todoList__button todoList__editButton">
-                                Edit
-                            </button>
-                            <button className="todoList__button todoList__removeButton">
-                                Remove
-                            </button>
-                        </li>
+                    { todos.length === 0 ? (
+                        <p className="todoList__noTodo">You don't have a to-do yet</p>
+                    ) : todos.map(todo => (
+                        <TodoItem
+                            todo={todo}
+                            key={todo.id}
+                        />
                     )) }
                 </ul>
             </Card>
