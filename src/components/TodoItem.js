@@ -1,14 +1,14 @@
 import React, { useState, useContext } from 'react';
 import { Store } from '../context/Store';
 import { Button } from './Button';
-import { UPDATE_TITLE } from '../context/constants';
+import { REMOVE_TODO, UPDATE_TITLE } from '../context/constants';
 
 export const TodoItem = ({ todo }) => {
     const { state, dispatch } = useContext(Store)
     const [editMode, setEditMode] = useState(false)
     const [newTitle, setNewTitle] = useState('')
 
-    const handleEditTodo = (id) => {
+    const handleEditTodo = id => {
         if (editMode) {
             if (newTitle) {
                 dispatch({ type: UPDATE_TITLE, payload: { id, newTitle } })
@@ -20,7 +20,10 @@ export const TodoItem = ({ todo }) => {
             setEditMode(true)
         }
     }
-    
+
+    const handleRemoveTodo = id => {
+        dispatch({type: REMOVE_TODO, payload: id})
+    }
 
     return (
         <li className="todoList__item">
@@ -41,7 +44,9 @@ export const TodoItem = ({ todo }) => {
             >
                 { editMode ? 'Save' : 'Edit' }
             </Button>
-            <Button className="todoList__button todoList__removeButton">
+            <Button
+                onClick={() => handleRemoveTodo(todo.id)}
+                className="todoList__button todoList__removeButton">
                 Remove
             </Button>
         </li>
