@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { Store } from '../context/Store';
 import { Button } from './Button';
-import { REMOVE_TODO, UPDATE_TITLE } from '../context/constants';
+import { COMPLETE_TODO, REMOVE_TODO, UPDATE_TITLE } from '../context/constants';
 
 export const TodoItem = ({ todo }) => {
     const { state, dispatch } = useContext(Store)
@@ -22,18 +22,23 @@ export const TodoItem = ({ todo }) => {
     }
 
     const handleRemoveTodo = id => {
-        dispatch({type: REMOVE_TODO, payload: id})
+        dispatch({ type: REMOVE_TODO, payload: id })
+    }
+
+    const handleCompleteTodo = id => {
+        dispatch({ type: COMPLETE_TODO, payload: id })
     }
 
     return (
         <li className="todoList__item">
-            <input className="todoList__completed" id="completed" type="checkbox"/>
+            <input onClick={ () => handleCompleteTodo(todo.id) } className="todoList__completed"
+                   id="completed" type="checkbox"/>
             { editMode ? (
                 <input
                     onChange={ e => setNewTitle(e.target.value) }
                     className="todoList__input"
-                    defaultValue={todo.title}
-                    autoFocus={true}
+                    defaultValue={ todo.title }
+                    autoFocus={ true }
                 />
             ) : (
                 <label className="todoList__title" htmlFor="completed">{ todo.title }</label>
@@ -45,7 +50,7 @@ export const TodoItem = ({ todo }) => {
                 { editMode ? 'Save' : 'Edit' }
             </Button>
             <Button
-                onClick={() => handleRemoveTodo(todo.id)}
+                onClick={ () => handleRemoveTodo(todo.id) }
                 className="todoList__button todoList__removeButton">
                 Remove
             </Button>

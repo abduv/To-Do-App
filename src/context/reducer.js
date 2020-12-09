@@ -1,4 +1,4 @@
-import { ADD_TODO, REMOVE_TODO, UPDATE_TITLE } from './constants';
+import { ADD_TODO, COMPLETE_TODO, REMOVE_TODO, UPDATE_TITLE } from './constants';
 
 export function reducer(state, action) {
     switch (action.type) {
@@ -21,6 +21,16 @@ export function reducer(state, action) {
             return {
                 ...state,
                 todos: [...state.todos.filter(todo => todo.id !== action.payload)]
+            }
+        case COMPLETE_TODO:
+            return {
+                ...state,
+                todos: [...state.todos.map(todo => {
+                    if (todo.id === action.payload) {
+                        return { ...todo, completed: !todo.completed }
+                    }
+                    return todo
+                })]
             }
         default: return state
     }
