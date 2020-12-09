@@ -5,14 +5,15 @@ import { TodoItem } from './TodoItem';
 
 export const TodoList = () => {
     const { state: { todos } } = useContext(Store)
+    const todoListTodo = todos.filter(todo => !todo.completed)
 
     return (
         <>
             <Card title="To-Do List">
                 <ul className="todoList">
-                    { todos.length === 0 ? (
+                    { todoListTodo.length === 0 ? (
                         <p className="noTodo">You don't have a to-do yet</p>
-                    ) : todos.map(todo => {
+                    ) : todoListTodo.map(todo => {
                         if (!todo.completed) {
                             return <TodoItem
                                 todo={todo}
