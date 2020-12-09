@@ -1,17 +1,17 @@
 import React, { useState, useContext } from 'react';
 import { Store } from '../context/Store';
 import { Button } from './Button';
-import { COMPLETE_TODO, REMOVE_TODO, UPDATE_TITLE } from '../context/constants';
+import * as actions from '../context/actions'
 
 export const TodoItem = ({ todo }) => {
-    const { state, dispatch } = useContext(Store)
+    const { dispatch } = useContext(Store)
     const [editMode, setEditMode] = useState(false)
     const [newTitle, setNewTitle] = useState('')
 
     const handleEditTodo = id => {
         if (editMode) {
             if (newTitle) {
-                dispatch({ type: UPDATE_TITLE, payload: { id, newTitle } })
+                dispatch(actions.updateTitle(id, newTitle))
                 setEditMode(false)
                 return null
             }
@@ -22,11 +22,11 @@ export const TodoItem = ({ todo }) => {
     }
 
     const handleRemoveTodo = id => {
-        dispatch({ type: REMOVE_TODO, payload: id })
+        dispatch(actions.removeTodo(id))
     }
 
     const handleCompleteTodo = id => {
-        dispatch({ type: COMPLETE_TODO, payload: id })
+        dispatch(actions.completeTodo(id))
     }
 
     return (

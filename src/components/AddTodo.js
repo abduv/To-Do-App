@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Card } from './Card';
 import { Store } from '../context/Store';
-import { ADD_TODO } from '../context/constants';
+import * as actions from '../context/actions'
 
 export const AddTodo = () => {
     const { state, dispatch } = useContext(Store)
@@ -15,7 +15,7 @@ export const AddTodo = () => {
                 id: state.todos.length + 1,
                 completed: false
             }
-            dispatch({ type: ADD_TODO, payload: newTodo })
+            dispatch(actions.addTodo(newTodo))
             setTitle('')
         }
     }
