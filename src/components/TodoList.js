@@ -11,7 +11,7 @@ export const TodoList = () => {
             <Card title="To-Do List">
                 <ul className="todoList">
                     { todos.length === 0 ? (
-                        <p className="todoList__noTodo">You don't have a to-do yet</p>
+                        <p className="noTodo">You don't have a to-do yet</p>
                     ) : todos.map(todo => {
                         if (!todo.completed) {
                             return <TodoItem
