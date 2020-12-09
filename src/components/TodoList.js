@@ -12,12 +12,14 @@ export const TodoList = () => {
                 <ul className="todoList">
                     { todos.length === 0 ? (
                         <p className="todoList__noTodo">You don't have a to-do yet</p>
-                    ) : todos.map(todo => (
-                        <TodoItem
-                            todo={todo}
-                            key={todo.id}
-                        />
-                    )) }
+                    ) : todos.map(todo => {
+                        if (!todo.completed) {
+                            return <TodoItem
+                                todo={todo}
+                                key={todo.id}
+                            />
+                        }
+                    })}
                 </ul>
             </Card>
         </>
