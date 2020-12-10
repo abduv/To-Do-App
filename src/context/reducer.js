@@ -1,4 +1,4 @@
-import { ADD_TODO, COMPLETE_TODO, REMOVE_TODO, UPDATE_TITLE } from './constants';
+import { ADD_TODO, COMPLETE_TODO, FETCH_TODOS, REMOVE_TODO, SHOW_LOADER, UPDATE_TITLE } from './constants';
 
 export function reducer(state, action) {
     switch (action.type) {
@@ -31,6 +31,17 @@ export function reducer(state, action) {
                     }
                     return todo
                 })]
+            }
+        case FETCH_TODOS:
+            return {
+                ...state,
+                todos: [...state.todos, ...action.payload],
+                loading: false
+            }
+        case SHOW_LOADER:
+            return {
+                ...state,
+                loading: true
             }
         default: return state
     }

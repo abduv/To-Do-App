@@ -1,4 +1,4 @@
-import { ADD_TODO, COMPLETE_TODO, REMOVE_TODO, UPDATE_TITLE } from './constants';
+import { ADD_TODO, COMPLETE_TODO, FETCH_TODOS, REMOVE_TODO, SHOW_LOADER, UPDATE_TITLE } from './constants';
 
 export const updateTitle = (id, newTitle) => {
     return {
@@ -25,5 +25,18 @@ export const addTodo = newTodo => {
     return {
         type: ADD_TODO,
         payload: newTodo
+    }
+}
+
+export const fetchTodosAC = todos => {
+    return {
+        type: FETCH_TODOS,
+        payload: todos
+    }
+}
+
+export const showLoaderAC = () => {
+    return {
+        type: SHOW_LOADER
     }
 }
