@@ -3,15 +3,12 @@ import { Header } from './components/Header';
 import { AddTodo } from './components/AddTodo';
 import { TodoList } from './components/TodoList';
 import { Completed } from './components/Completed';
-import { Store } from './context/Store';
+import { Store, StoreContext } from './context/Store';
 import { reducer } from './context/reducer';
 
 function App() {
-    const store = useContext(Store)
-    const [state, dispatch] = useReducer(reducer, store)
-
     return (
-        <Store.Provider value={ { state, dispatch } }>
+        <StoreContext>
             <div>
                 <Header/>
                 <div className="container">
@@ -20,7 +17,7 @@ function App() {
                     <Completed/>
                 </div>
             </div>
-        </Store.Provider>
+        </StoreContext>
     );
 }
 
