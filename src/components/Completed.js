@@ -1,23 +1,28 @@
 import React, { useContext } from 'react';
 import { Card } from './Card';
 import { Store } from '../context/Store';
+import { Loading } from './Loading';
 
 export const Completed = () => {
-    const { state: {todos} } = useContext(Store)
+    const { state: {todos, loading} } = useContext(Store)
     const completedTodo = todos.filter(todo => todo.completed)
 
     return (
         <>
             <Card title="Completed">
-                <ul className="completed__list">
-                    { completedTodo.length === 0 ? (
-                        <p className="noTodo">You don't have a completed to-do yet</p>
-                    ) : (
-                        completedTodo.map(todo => (
-                            <CompletedItem todo={todo} key={todo.id} />
-                        ))
-                    ) }
-                </ul>
+                { loading ? (
+                    <Loading />
+                ) : (
+                    <ul className="completed__list">
+                        { completedTodo.length === 0 ? (
+                            <p className="noTodo">You don't have a completed to-do yet</p>
+                        ) : (
+                            completedTodo.map(todo => (
+                                <CompletedItem todo={todo} key={todo.id} />
+                            ))
+                        ) }
+                    </ul>
+                )}
             </Card>
         </>
     )
