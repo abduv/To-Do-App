@@ -1,11 +1,15 @@
-import React, { useContext} from 'react';
+import React, { useContext, useEffect} from 'react';
 import { Card } from './Card';
 import { Store } from '../context/Store';
 import { TodoItem } from './TodoItem';
 
 export const TodoList = () => {
-    const { state: { todos } } = useContext(Store)
+    const { state: { todos }, fetchTodos } = useContext(Store)
     const todoListTodo = todos.filter(todo => !todo.completed)
+
+    useEffect(() => {
+        fetchTodos()
+    }, [])
 
     return (
         <>

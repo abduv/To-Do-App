@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import { Card } from './Card';
 import { Store } from '../context/Store';
-import * as actions from '../context/actions';
 
 export const Completed = () => {
     const { state: {todos} } = useContext(Store)
@@ -25,13 +24,13 @@ export const Completed = () => {
 }
 
 const CompletedItem = ({todo}) => {
-    const { dispatch } = useContext(Store)
+    const { removeTodo } = useContext(Store)
 
     return (
         <li className="completed__item">
             <p className="completed__title">{ todo.title }</p>
             <button
-                onClick={() => dispatch(actions.removeTodo(todo.id))}
+                onClick={() => removeTodo(todo.id)}
                 className="completed__button">Remove</button>
         </li>
     )

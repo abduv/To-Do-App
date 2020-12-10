@@ -1,21 +1,15 @@
 import React, { useContext, useState } from 'react';
 import { Card } from './Card';
 import { Store } from '../context/Store';
-import * as actions from '../context/actions'
 
 export const AddTodo = () => {
-    const { state, dispatch } = useContext(Store)
+    const { addTodo } = useContext(Store)
     const [title, setTitle] = useState('')
 
     const handleAddTodo = e => {
         e.preventDefault()
         if (title) {
-            const newTodo = {
-                title,
-                id: state.todos.length + 1,
-                completed: false
-            }
-            dispatch(actions.addTodo(newTodo))
+            addTodo(title)
             setTitle('')
         }
     }

@@ -1,17 +1,20 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Store } from '../context/Store';
 import { Button } from './Button';
-import * as actions from '../context/actions'
 
 export const TodoItem = ({ todo }) => {
-    const { dispatch } = useContext(Store)
+    const { completeTodo, removeTodo, updateTitle } = useContext(Store)
     const [editMode, setEditMode] = useState(false)
-    const [newTitle, setNewTitle] = useState('')
+    const [title, setTitle] = useState('')
+
+    useEffect(() => {
+        setTitle(todo.title)
+    }, [todo])
 
     const handleEditTodo = id => {
         if (editMode) {
-            if (newTitle) {
-                dispatch(actions.updateTitle(id, newTitle))
+            if (title) {
+                updateTitle(id, title)
                 setEditMode(false)
                 return null
             }
@@ -22,11 +25,11 @@ export const TodoItem = ({ todo }) => {
     }
 
     const handleRemoveTodo = id => {
-        dispatch(actions.removeTodo(id))
+        removeTodo(id)
     }
 
     const handleCompleteTodo = id => {
-        dispatch(actions.completeTodo(id))
+        completeTodo(id)
     }
 
     return (
@@ -35,9 +38,9 @@ export const TodoItem = ({ todo }) => {
                    id="completed" type="checkbox"/>
             { editMode ? (
                 <input
-                    onChange={ e => setNewTitle(e.target.value) }
+                    onChange={ e => setTitle(e.target.value) }
                     className="todoList__input"
-                    defaultValue={ todo.title }
+                    value={ title }
                     autoFocus={ true }
                 />
             ) : (
