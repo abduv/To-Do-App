@@ -16,7 +16,8 @@
         @include button;
 
         &:hover {
-            cursor: pointer;
+            background-color: #ff0000;
+            color: #fff;
         }
     }
 }
