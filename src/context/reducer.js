@@ -35,7 +35,7 @@ export function reducer(state, action) {
         case FETCH_TODOS:
             return {
                 ...state,
-                todos: [...state.todos, ...action.payload],
+                todos: [...action.payload],
                 loading: false
             }
         case SHOW_LOADER:
