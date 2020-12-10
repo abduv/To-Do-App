@@ -1,10 +1,9 @@
 import React from 'react';
 
-export const Button = ({ className, onClick, children }) => {
+export const Button = ({children, ...props }) => {
     return (
         <button
-            onClick={ onClick }
-            className={ className }
+            { ...props }
         >
             { children }
         </button>
